@@ -1,0 +1,11 @@
+@model VirtualEventTicketingSystem.Models.Event
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Buy Tickets for @Model.Title</h2>
+<form method="post">
+    <input name="guestName" placeholder="Name" required/>
+    <input name="guestEmail" placeholder="Email" required/>
+    <input name="quantity" type="number" min="1" max="@Model.AvailableTickets" value="1"/>
+    <button type="submit">Purchase</button>
+</form>

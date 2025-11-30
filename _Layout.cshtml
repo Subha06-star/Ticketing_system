@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual Events</title>
+  <link rel="stylesheet" href="/css/site.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a> | <a href="/Events">Events</a> | <a href="/Dashboard">Dashboard</a>
+    <span style="float:right">@User.Identity?.Name</span>
+  </nav>
+  <div class="container">
+    @RenderBody()
+  </div>
+  <footer>Group Project - COMP2139</footer>
+  <script src="/js/site.js"></script>
+  @RenderSection("scripts", required:false)
+</body>
+</html>

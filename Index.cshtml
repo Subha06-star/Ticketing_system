@@ -1,0 +1,29 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Upcoming Events</h1>
+<div>
+    <input id="search" placeholder="Search events..."/>
+    <div id="results"></div>
+</div>
+<ul>
+@foreach(var e in Model){
+    <li>@e.Title - @e.Category - @e.Date.ToShortDateString() - $@e.Price</li>
+}
+</ul>
+
+@section scripts {
+<script>
+document.getElementById('search').addEventListener('input', async function(){
+    const q = this.value;
+    if(!q) { document.getElementById('results').innerHTML=''; return; }
+    const res = await fetch('/Events/SearchAjax', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ q: q })
+    });
+    const data = await res.json();
+    document.getElementById('results').innerHTML = data.map(d=>`<div><a href='/Events/Details/${d.id}'>${d.title}</a> - $${d.price}</div>`).join('');
+});
+</script>
+}
